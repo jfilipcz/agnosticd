@@ -54,6 +54,16 @@
         name: selinux
         version: 0.2.1
 
+- name: Install OpenShift Helm 3
+  when: install_helm | default(False) | bool
+  get_url:
+    url: "{{ bastion_lite_installer_root_url }}/openshift-v4/clients/helm/{{ bastion_lite_helm_version }}/helm-linux-amd64"
+    dest: /usr/local/bin/helm
+    owner: root
+    group: root
+    mode: 0775
+  ignore_errors: true
+
 - name: Install jq on the bastion
   get_url:
     url: https://gpte-public.s3.amazonaws.com/jq-linux64
