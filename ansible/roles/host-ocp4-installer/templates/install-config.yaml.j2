@@ -20,6 +20,9 @@ controlPlane:
 {%   if hostvars.localhost.openshift_controlplane_aws_zones_odcr | default([]) | length > 0 %}
       zones: {{ hostvars.localhost.openshift_controlplane_aws_zones_odcr | unique | to_json }}
 {%   endif %}
+{%   if master_storage_size %}
+      size: {{ master_storage_size | int }}
+{%   endif %}
       rootVolume:
         type: {{ master_storage_type | to_json }}
         size: {{ master_storage_size | int }}
