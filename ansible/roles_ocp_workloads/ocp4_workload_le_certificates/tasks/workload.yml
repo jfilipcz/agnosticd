@@ -236,7 +236,7 @@
     # cluster operator enough time to progress.
     - name: Wait 12m for all APIservers to be back up
       pause:
-        minutes: 12
+        minutes: 20
 
     - name: Find all Kube Configs
       become: true
