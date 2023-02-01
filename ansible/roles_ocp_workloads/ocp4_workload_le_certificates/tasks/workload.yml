@@ -259,6 +259,14 @@
         regexp: "^ +certificate-authority-data:.*"
       loop: "{{r_config_files.files}}"
 
+    - name: Make sure Oauth has valid certificate
+      get_certificate:
+        host: "oauth-openshift.{{ base_openshift_url }}'"
+        port: 443
+      register: r_oauth_certificate
+      retries: 30
+      delay: 10
+
     - name: Make sure API Calls succeed
       k8s_info:
         api_version: config.openshift.io/v1
