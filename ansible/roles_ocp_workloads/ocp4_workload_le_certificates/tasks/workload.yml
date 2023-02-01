@@ -264,8 +264,10 @@
         host: "oauth-openshift.{{ base_openshift_url }}'"
         port: 443
       register: r_oauth_certificate
+      ignore_errors: yes
       retries: 30
       delay: 10
+      until: not r_oauth_certificate.failed
 
     - name: Make sure API Calls succeed
       k8s_info:
