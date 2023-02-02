@@ -261,7 +261,7 @@
 
     - name: Make sure Oauth has valid certificate
       get_certificate:
-        host: "oauth-openshift.{{ base_openshift_url }}'"
+        host: "oauth-openshift.{{ base_openshift_url }}"
         port: 443
       register: r_oauth_certificate
       ignore_errors: yes
